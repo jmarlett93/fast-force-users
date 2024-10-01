@@ -1,0 +1,16 @@
+h2 {
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 20px;
+    .back {
+        justify-self: flex-end;
+        margin-left: auto;
+    }
+}
+.tab-content {
+    margin: 1em;
+}

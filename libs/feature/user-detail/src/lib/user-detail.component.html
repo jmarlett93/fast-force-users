@@ -1,0 +1,58 @@
+<section>
+    @if (vm$ | async; as vm) {
+        @if (vm.user) {
+            <h2>
+                <span>{{ vm.user.name }}</span>
+                <button
+                    (click)="store.toggleFavorite(vm.user.id)"
+                    aria-label="Toggle Favorite"
+                    color="secondary"
+                    mat-mini-fab
+                >
+                    <mat-icon
+                        color="{{ vm.user.favorite ? 'primary' : 'accent' }}"
+                        fontIcon="{{ vm.user.favorite ? 'favorite' : 'favorite_border' }}"
+                    />
+                </button>
+
+                <button [routerLink]="['/dashboard']" class="back" color="primary" mat-stroked-button>
+                    <mat-icon fontIcon="arrow_back_outline" />
+                    <span>Back</span>
+                </button>
+            </h2>
+            <p>
+                <em>{{ vm.user.company.catchPhrase }}</em>
+            </p>
+
+            <mat-tab-group>
+                <mat-tab label="Contact">
+                    <div class="tab-content">
+                        <p><strong>Email:</strong> {{ vm.user.email }}</p>
+                        <p><strong>Phone:</strong> {{ vm.user.phone }}</p>
+                        <p><strong>Website:</strong> {{ vm.user.website }}</p>
+                        <p><strong>Username:</strong> {{ vm.user.username }}</p>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Address">
+                    <div class="tab-content">
+                        <div>
+                            <p><strong>Street:</strong> {{ vm.user.address.street }}</p>
+                            <p><strong>Suite:</strong> {{ vm.user.address.suite }}</p>
+                            <p><strong>City:</strong> {{ vm.user.address.city }}</p>
+                            <p><strong>Zipcode:</strong> {{ vm.user.address.zipcode }}</p>
+                            <p><strong>Latitude:</strong> {{ vm.user.address.geo.lat }}</p>
+                            <p><strong>Longitude:</strong> {{ vm.user.address.geo.lng }}</p>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Company">
+                    <div class="tab-content">
+                        <p><strong>Name:</strong> {{ vm.user.company.name }}</p>
+                        <p><strong>Catch Phrase:</strong> {{ vm.user.company.catchPhrase }}</p>
+                        <p><strong>BS:</strong> {{ vm.user.company.bs }}</p>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        }
+    }
+</section>

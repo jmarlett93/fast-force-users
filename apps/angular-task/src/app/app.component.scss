@@ -2,3 +2,10 @@
     display: block;
     padding: 1rem;
 }
+
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: cornflowerblue;
+    color: white;
+}

@@ -1,4 +1,4 @@
-# AngularTask
+# Fast Force Users Management App
 
 ## Goal
 

@@ -1,31 +1,21 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-
+import { StoreModule } from '@ngrx/store';
+import { render, screen } from '@testing-library/angular';
+import { AppComponent } from './app.component';
 describe('AppComponent', () => {
 
-    beforeEach(async () => {
+    async function setup (): Promise<void> {
 
-        await TestBed.configureTestingModule({
-            imports: [AppComponent, RouterModule.forRoot([])],
-        }).compileComponents();
+        await render(AppComponent, {
+            imports: [RouterModule.forRoot([]), StoreModule.forRoot({})],
+        });
 
-    });
+    }
 
-    it('should render title', () => {
+    it(`should have as title 'Fast Force Users Management App'`, async () => {
 
-        const fixture = TestBed.createComponent(AppComponent);
-        fixture.detectChanges();
-        const compiled = fixture.nativeElement as HTMLElement;
-        expect(compiled.querySelector('h1')?.textContent).toContain('User Management');
-
-    });
-
-    it(`should have as title 'angular-task'`, () => {
-
-        const fixture = TestBed.createComponent(AppComponent);
-        const app = fixture.componentInstance;
-        expect(app.title).toEqual('angular-task');
+        await setup();
+        expect(screen.getByText('Fast Force Users Management App')).toBeTruthy();
 
     });
 

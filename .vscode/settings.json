@@ -1,3 +1,9 @@
 {
-  "prettier.tabWidth": 4
+  "prettier.tabWidth": 4,
+  "prettier.prettierPath": "node_modules/prettier/index.cjs",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
 }

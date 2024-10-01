@@ -9,12 +9,19 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
+    "esModuleInterop": true,
     "module": "esnext",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@angular-task/user-detail": ["libs/feature/user-detail/src/index.ts"],
+      "@angular-task/user-management": ["./libs/feature/user-management/src/index.ts"],
+      "@crx/user-dashboard": ["./libs/features/user-dashboard/src/index.ts"],
+      "@crx/user-details": ["./libs/features/user-details/src/index.ts"],
+      "@crx/users/data-access": ["./libs/data-access/users/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

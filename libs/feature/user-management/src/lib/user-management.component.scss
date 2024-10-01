@@ -1,0 +1,20 @@
+div {
+    margin: 1em;
+}
+mat-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    height: fit-content;
+    background-color: transparent;
+}
+mat-card {
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+mat-card-header {
+    justify-content: center;
+    padding-bottom: 1em;
+    gap: 1em;
+}

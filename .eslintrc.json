@@ -40,8 +40,12 @@
             "allowCircularSelfDependency": true,
             "depConstraints": [
               {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": ["type:feature", "type:util", "type:data-access", "type:ui"]
+              },
+              {
                 "sourceTag": "type:feature",
-                "onlyDependOnLibsWithTags": ["type:data-access", "type:feature", "type:ui", "type:util"]
+                "onlyDependOnLibsWithTags": ["type:data-access", "type:util", "type:ui"]
               },
               {
                 "sourceTag": "type:data-access",
@@ -183,7 +187,7 @@
         "operator-linebreak": ["error", "before"],
         "padded-blocks": ["error"],
         "prefer-arrow-callback": ["error"],
-        "prefer-const": ["error"],
+        "prefer-const": ["warn"],
         "quote-props": ["error", "as-needed"],
         "space-in-parens": ["error"],
         "spaced-comment": ["error"],

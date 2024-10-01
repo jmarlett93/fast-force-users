@@ -1,0 +1,31 @@
+@if (store.vm$ | async; as vm) {
+    <div class="container">
+        <mat-toolbar>
+            <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input (ngModelChange)="store.searchChange($event)" [ngModel]="vm.search" matInput type="text" />
+            </mat-form-field>
+        </mat-toolbar>
+        <mat-grid-list cols="3">
+            @for (user of vm.users; track user.id) {
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-card [routerLink]="['/user', user.id]" tabindex="0">
+                        <mat-card-header>
+                            <mat-card-title>{{ user.name }}</mat-card-title>
+                            @if (user.favorite) {
+                                <mat-icon fontIcon="favorite" />
+                            }
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p>
+                                <em>{{ user.company.catchPhrase }}</em>
+                            </p>
+                            <p>{{ user.email }}</p>
+                            <p>{{ user.phone }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-grid-tile>
+            }
+        </mat-grid-list>
+    </div>
+}
