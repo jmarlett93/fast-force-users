@@ -13,8 +13,9 @@ interface UserManagementVm {
     search: string;
 }
 
-const searchAlgorithm = (search: string, users: UsersEntity[]) => users.filter((user) =>
-    user.name.toLowerCase().includes(search.toLowerCase())
+const searchAlgorithm = (search: string, users: UsersEntity[]) =>
+    users.filter((user) =>
+        user.name.toLowerCase().includes(search.toLowerCase())
             || user.email.toLowerCase().includes(search.toLowerCase())
             || user.phone.toLowerCase().includes(search.toLowerCase())
             || user.company?.catchPhrase.toLowerCase().includes(search.toLowerCase())

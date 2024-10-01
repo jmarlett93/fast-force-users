@@ -1,43 +1,67 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserDetailComponent } from './user-detail.component';
 import { UserDetailStore } from './user-detail.component.store';
-import { StoreModule } from '@ngrx/store';
-import { CommonModule } from '@angular/common';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { RouterModule } from '@angular/router';
+
+import { render, screen } from '@testing-library/angular';
+import { createSpyFromClass } from 'jest-auto-spies';
+import { UsersEntity } from '@crx/users/data-access';
 describe('UserDetailComponent', () => {
 
-    let component: UserDetailComponent;
-    let fixture: ComponentFixture<UserDetailComponent>;
+    const user: UsersEntity = {
+        id: 1,
+        name: 'Test Name',
+        username: '',
+        email: 'test@test.com',
+        address: {
+            street: 'street',
+            suite: 'suite',
+            city: 'city',
+            zipcode: '456567',
+            geo: {
+                lat: '',
+                lng: '',
+            },
+        },
+        phone: '234-123-1233',
+        website: 'test.com',
+        company: {
+            name: 'test company',
+            catchPhrase: 'test catch phrase',
+            bs: 'test bs',
+        },
+    };
 
-    beforeEach(async () => {
+    async function setup (vm: { user: UsersEntity }) {
 
-        await TestBed.configureTestingModule({
-            imports: [
-                UserDetailComponent,
-                CommonModule,
-                MatTabsModule,
-                MatButtonModule,
-                MatIconModule,
-                MatGridListModule,
-                RouterModule,
-                StoreModule.forRoot({}),
+        const componentStore = createSpyFromClass(UserDetailStore, {
+            observablePropsToSpyOn: ['vm$'],
+            methodsToSpyOn: ['toggleFavorite'],
+        });
+
+        componentStore.vm$.nextWith(vm);
+        const result = await render(UserDetailComponent, {
+            componentProviders: [
+                {
+                    provide: UserDetailStore,
+                    useValue: componentStore,
+                },
             ],
-            providers: [UserDetailStore],
-        }).compileComponents();
+        });
+        const { fixture } = result;
+        return { componentStore, component: fixture.componentInstance };
 
-        fixture = TestBed.createComponent(UserDetailComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+    }
+
+    it('should display user name', async () => {
+
+        await setup({ user });
+        expect(screen.getByText('Test Name')).toBeTruthy();
 
     });
+    it('should display show filled heart if user is favorite', async () => {
 
-    it('should create', () => {
-
-        expect(component).toBeTruthy();
+        const favoriteUser = { ...user, favorite: 'favorite' };
+        await setup({ user: favoriteUser });
+        expect(screen.getByTestId('favorite-icon').classList).toContain('mat-primary');
 
     });
 
