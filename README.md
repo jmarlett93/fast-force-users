@@ -1,5 +1,17 @@
 # Fast Force Users Management App
 
+## NOTE TO REVIEWERS
+
+-- To see see the application in action, run `npx nx serve angular-task`
+
+-- I ran the nx build commands and the NX configuration doesn't like something about the way that I do internal imports for the componenent store in the user-management and user-details libraries
+
+-- To verify I added a dummy "user-dashboard" library and that library builds fine, even with a copy of the user-mamagment store in it. But the moment I import the store to provide in the component, the nx build fails. 
+
+-- I lost some time debugging the build, but added a bunch of unit tests including a SIFERS style test suite on user-detail component using the @angular/testing-library. 
+
+-- Let me know if you have any questions or additional feedback!
+
 ## Goal
 
 The goal of this assignment is to showcase your skills and coding style while building an enterprise grade Angular application. You may take your time with this assessment to show case your skills. Once you have it working you can add some extra flare with unit testing, e2e testing with playwright, updated styles to make it snazzy, or whatever else you feel like. 

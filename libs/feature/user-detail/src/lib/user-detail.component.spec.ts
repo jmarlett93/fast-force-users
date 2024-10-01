@@ -1,6 +1,5 @@
 import { UserDetailComponent } from './user-detail.component';
 import { UserDetailStore } from './user-detail.component.store';
-
 import { render, screen } from '@testing-library/angular';
 import { createSpyFromClass } from 'jest-auto-spies';
 import { UsersEntity } from '@crx/users/data-access';

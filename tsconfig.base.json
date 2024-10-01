@@ -16,9 +16,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@angular-task/user-detail": ["./libs/feature/user-detail/src/index.ts"],
-      "@angular-task/user-management": ["./libs/feature/user-management/src/index.ts"],
-      "@crx/users/data-access": ["./libs/data-access/users/src/index.ts"]
+      "@angular-task/user-detail": ["libs/feature/user-detail/src/index.ts"],
+      "@angular-task/user-management": ["libs/feature/user-management/src/index.ts"],
+      "@crx/user-dashboard": ["libs/feature/user-dashboard/src/index.ts"],
+      "@crx/users/data-access": ["libs/data-access/users/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
